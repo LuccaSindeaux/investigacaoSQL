@@ -29,13 +29,13 @@ select <br>
     COUNT(*) AS numero_de_compras, <br>
     SUM(qtde) AS total_quantidade_comprada <br>
 from <br>
-    investigacao_compra
+    investigacao_compra <br>
 where <br>
-    data_compra >= (select MAX(data_compra) from investigacao_compra) - INTERVAL '6 months'
+    data_compra >= (select MAX(data_compra) from investigacao_compra) - INTERVAL '6 months' <br>
 GROUP BY <br>
-    nome_pessoa, pessoa_id
+    nome_pessoa, pessoa_id <br>
 HAVING <br>
-    COUNT(*) > 1
+    COUNT(*) > 1 <br>
 ORDER BY <br>
     total_quantidade_comprada DESC;
 
