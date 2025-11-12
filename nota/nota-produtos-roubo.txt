@@ -1,0 +1,27 @@
+Produto                                      valor r$  qtde  valor item r$
+-----------------------------------------   --------- -----  -------------
+Vinho Pérgola                                   16,25    50         812,50
+Casal Garcia Vinho Verde                        29,25    50       1.462,50
+Casillero del Diablo Cabernet Sauvignon         39,00    50       1.950,00
+Miolo Seleção Rosé                              26,00    50       1.300,00
+Miolo Seleção Cabernet & Merlot                 26,00    50       1.300,00
+Don Guerino Sinais Cabernet Sauvignon           32,50   100       3.250,00
+Almadén Riesling                                22,75    25         568,75
+Kamé Cabernet Franc                             90,35    50       4.517,50
+Miolo Lote 43 Merlot                           168,35    25       4.208,75
+Baron Assemblage 2020                          250,00    25       6.250,00
+Mateus Rosé                                     17,90    25         447,60
+Lancers Rosé                                    15,91    25         397,80
+Periquita Tinto                                 13,33    50         666,30
+Pêra-Manca Tinto                               914,94    25      22.873,50
+Barca Velha                                  2.287,35   100     228.735,00
+Niepoort Redoma Branco                          91,49    25       2.287,35
+Quinta da Romaneira Syrah                       68,62    25       1.715,51
+Herdade do Esporão Private Selection Tinto     228,74    25       5.718,38
+Quinta do Vallado Touriga Nacional              99,45    50       4.972,50
+Dona Maria Amantis Reserva Branco               66,30    25       1.657,50
+Quinta do Noval Black                           66,30    25       1.657,50
+Herdade dos Grous Moon Harvested               104,42    25       2.610,56
+
+--------------------------------------------------------------------------
+Total ..................................                900     299.359,50
