@@ -59,8 +59,8 @@ Que gerou 56 linhas de resultado.
 <h3>4. Listando com investigacao_pedagio</h3>
 Os 56 resultados todos possuem um item na coluna "placa", que também está presente na tabela investigacao_pedagio. Sendo possível fazer um join das tabelas aqui por possuirem um domínio em comum, a query foi:
 
-SELECT p.* FROM investigacao_pedagio p
-	JOIN veiculo v ON p.placa = v.placa 
+SELECT p.* FROM investigacao_pedagio p <br>
+	JOIN veiculo v ON p.placa = v.placa
 	WHERE v.cor = 'azul escuro' and modelo_id IN (55, 56, 57, 58, 68, 69);
 
 O resultado foi surpreendentemente um único veículo com as seguintes colunas: 
@@ -76,13 +76,13 @@ Com a query " SELECT * FROM investigacao_telefone ", obtive um retorno de 976 li
 
 <h2>Continuação da investigação (Parte 2):</h2>
 
-Com a placa do veículo suspeito em mãos, fui à tabel "veiculo" e descobri seu id com a query " SELECT * FROM veiculo WHERE placa = 'YOW-5932' ", obtendo o resultado:
+Com a placa do veículo suspeito em mãos, fui à tabel "veiculo" e descobri seu id com a query <br>" SELECT * FROM veiculo WHERE placa = 'YOW-5932' "<br>, obtendo o resultado:
 
 | id                                   | modelo_id | cor         | ano  | placa    |
 | :----------------------------------- | :-------- | :---------- | :--- | :------- |
 | 3992b3c3-cac3-4ee8-832a-8e93c08fe684 | 55        | azul escuro | 1972 | YOW-5932 |
 
-Usando o id do véiculo, fui a proprietario_veiculo, e com a query " SELECT * FROM proprietario_veiculo WHERE veiculo_id = '3992b3c3-cac3-4ee8-832a-8e93c08fe684' ", obtive o id do proprietario com o resultado:
+Usando o id do véiculo, fui a proprietario_veiculo, e com a query <br>" SELECT * FROM proprietario_veiculo WHERE veiculo_id = '3992b3c3-cac3-4ee8-832a-8e93c08fe684' "<br>, obtive o id do proprietario com o resultado:
 
 | id    | veiculo_id                           | proprietario_id                      | data_compra |
 | :---- | :----------------------------------- | :----------------------------------- | :---------- |
@@ -94,23 +94,23 @@ Voltando um degrau acima, na tabela proprietario, lancei mão de <br>" SELECT * 
 | :----------------------------------- | :---------------- |
 | 6b3c4089-5f06-45e3-9253-605a4f63e029 | Pessoa Fisica     |
 
-Fazendo um rápido comparativo com a tabela que obtive usando as informações do caminhoneiro, o id do proprietario do veículo não é igual a nenhum dos 3 eesultados. Ou seja, é provável que o homem descrito pelo caminhoneiro não é o proprietário do veículo, podendo nos ajudar a encontrar outro dos 3 meliantes usando este id na tabela proprietario_pessoa_fisica com a query " SELECT * FROM proprietario_pessoa_fisica WHERE proprietario_id = '6b3c4089-5f06-45e3-9253-605a4f63e029' " ; obtendo o resultado: 
+Fazendo um rápido comparativo com a tabela que obtive usando as informações do caminhoneiro, o id do proprietario do veículo não é igual a nenhum dos 3 eesultados. Ou seja, é provável que o homem descrito pelo caminhoneiro não é o proprietário do veículo, podendo nos ajudar a encontrar outro dos 3 meliantes usando este id na tabela proprietario_pessoa_fisica com a query <br>" SELECT * FROM proprietario_pessoa_fisica WHERE proprietario_id = '6b3c4089-5f06-45e3-9253-605a4f63e029' " <br>; obtendo o resultado: 
 
 | id  | proprietario_id                      | pessoa_id                            |
 | :-- | :----------------------------------- | :----------------------------------- |
 | 958 | 6b3c4089-5f06-45e3-9253-605a4f63e029 | ab8cfb5c-2329-4e53-b9a9-5819a5179c62 |
 
-Com o id da pessoa, posso ir na tabela pessoa descobrir a identidade do proprietário do veículo:
+Com o id da pessoa, posso ir na tabela pessoa descobrir a identidade do proprietário do veículo, usando a query " select * from pessoa where id = 'ab8cfb5c-2329-4e53-b9a9-5819a5179c62' ":
 | nome          | primeiro_nome | sobrenome | apelido | profissao           | doc_identificacao                    | sexo | data_nascimento |
 | :------------ | :------------ | :-------- | :------ | :------------------ | :----------------------------------- | :--- | :-------------  |
 | Gisbert Bento | Gisbert Bento | Peixoto   | Bento   | Analista de sistemas | 96187b1f-cbf3-4104-8cdd-d1c2caaef34a | M    | 1974-09-02     | 
 
 Obs.: Removi a coluna de estar vivo neste recorte acima para que coubesse no texto sem quebrar, também removi o id, já que ele já é conhecido. 
 
-Indo para pessoa_caracteristica, usei o id de Gilberto Bento Peixoto para obter suas informações com a query 
+Indo para pessoa_caracteristica, usei o id de Gisbert Bento Peixoto para obter suas informações com a query 
 <br>" SELECT id, oculos, bigode, barba, cor_olho, cor_pele, formato_cabelo, altura, peso, raca, tatuagem 
         FROM pessoa_caracteristica WHERE pessoa_id = 'ab8cfb5c-2329-4e53-b9a9-5819a5179c62' "<br>
-Obtendo o resultado abaixo, descobri então que Gilberto é possivlemnte o homem da terra-média que o ajudante  Pomponio Gustavo da Cunha, as características também batem com o que o outro ajudante, Aldo Enno Alves, forneceu.
+Obtendo o resultado abaixo, descobri então que Gisbert é possivlemnte o homem da terra-média que o ajudante  Pomponio Gustavo da Cunha, as características também batem com o que o outro ajudante, Aldo Enno Alves, forneceu.
 
 | id    | oculos | bigode | barba | cor_olho | cor_pele | cor_cabelo | formato_cabelo | altura | peso  | raca        | tatuagem      |
 | :---- | :----- | :----- | :---- | :------- | :------- | :--------- | :------------- | :----- | :---- | :---------- | :------------ |
