@@ -2,7 +2,7 @@
 
 Apesar de haverem algumas informações vagas, o motorista do caminhão entrevistado forneceu muitos delathes sobre um dos 3 meliantes, pensei que através dele poderia chegar nos outros dois, a primeira busca feita foi uma para filtrar possíveis suspeitos. A busca foi feita com a query:
 
-select * from pessoa_caracteristica where bigode = '1'
+select * from pessoa_caracteristica where bigode = '1'<br>
 	and barba = 'Sim'
 	and cor_cabelo = 'vermelho'
 	and formato_cabelo = 'longo'
@@ -21,22 +21,22 @@ Eu não utilizei a informação de que ele estava com óculos escuros, porque a 
 <h2>Seguindo os pedidos do investigador responsável(Parte 1):</h2>
 <h3>1. Maiores compradores de vinhos nos últimos seis meses.</h3>
  
- apliquei a query abaixo e obtive 271 linhas de resultado:
+Apliquei a query abaixo e obtive 271 linhas de resultado:
 
-select
-    nome_pessoa,
-    pessoa_id,
-    COUNT(*) AS numero_de_compras,
-    SUM(qtde) AS total_quantidade_comprada
-from
+select <br>
+    nome_pessoa, <br>
+    pessoa_id, <br>
+    COUNT(*) AS numero_de_compras, <br>
+    SUM(qtde) AS total_quantidade_comprada <br>
+from <br>
     investigacao_compra
-where
+where <br>
     data_compra >= (select MAX(data_compra) from investigacao_compra) - INTERVAL '6 months'
-GROUP BY
+GROUP BY <br>
     nome_pessoa, pessoa_id
-HAVING
+HAVING <br>
     COUNT(*) > 1
-ORDER BY
+ORDER BY <br>
     total_quantidade_comprada DESC;
 
 <h3>2. Listando os envolvidos.</h3>
@@ -88,7 +88,7 @@ Usando o id do véiculo, fui a proprietario_veiculo, e com a query " select * fr
 | :---- | :----------------------------------- | :----------------------------------- | :---------- |
 | 15064 | 3992b3c3-cac3-4ee8-832a-8e93c08fe684 | 6b3c4089-5f06-45e3-9253-605a4f63e029 | 2019-08-05  |
 
-Voltando um degrau acima, na tabela proprietario, lancei mão de " select * from proprietario where id = '6b3c4089-5f06-45e3-9253-605a4f63e029' " descobri que o proprietario era uma pessoa física. 
+Voltando um degrau acima, na tabela proprietario, lancei mão de <br>" select * from proprietario where id = '6b3c4089-5f06-45e3-9253-605a4f63e029' "<br> descobri que o proprietario era uma pessoa física. 
 
 | id                                   | tipo_proprietario |
 | :----------------------------------- | :---------------- |
@@ -106,6 +106,15 @@ Com o id da pessoa, posso ir na tabela pessoa descobrir a identidade do propriet
 | Gisbert Bento | Gisbert Bento | Peixoto   | Bento   | Analista de sistemas | 96187b1f-cbf3-4104-8cdd-d1c2caaef34a | M    | 1974-09-02     | 
 
 Obs.: Removi a coluna de estar vivo neste recorte acima para que coubesse no texto sem quebrar, também removi o id, já que ele já é conhecido. 
+
+Indo para pessoa_caracteristica, usei o id de Gilberto Bento Peixoto para obter suas informações com a query 
+<br>" select id, oculos, bigode, barba, cor_olho, cor_pele, formato_cabelo, altura, peso, raca, tatuagem 
+        from pessoa_caracteristica where pessoa_id = 'ab8cfb5c-2329-4e53-b9a9-5819a5179c62' "<br>
+Obtendo o resultado abaixo, descobri então que Gilberto é possivlemnte o homem da terra-média que o ajudante  Pomponio Gustavo da Cunha, as características também batem com o que o outro ajudante, Aldo Enno Alves, forneceu.
+
+| id    | oculos | bigode | barba | cor_olho | cor_pele | cor_cabelo | formato_cabelo | altura | peso  | raca        | tatuagem      |
+| :---- | :----- | :----- | :---- | :------- | :------- | :--------- | :------------- | :----- | :---- | :---------- | :------------ |
+| 17147 | 0      | 1      | Não   | verde    | laranja  | vermelho   | curto          | médio  | magro | terra-média | braço-esquerdo |
 
 
 
