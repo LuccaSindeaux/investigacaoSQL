@@ -23,20 +23,20 @@ Eu não utilizei a informação de que ele estava com óculos escuros, porque a 
  
 Apliquei a query abaixo e obtive 271 linhas de resultado:
 
-SELECT <br>
-    nome_pessoa, <br>
-    pessoa_id, <br>
-    COUNT(*) AS numero_de_compras, <br>
+SELECT
+    nome_pessoa,
+    pessoa_id,
+    COUNT(*) AS numero_de_compras,
     SUM(qtde) AS total_quantidade_comprada <br>
-FROM <br>
+FROM
     investigacao_compra <br>
-WHERE <br>
+WHERE
     data_compra >= (SELECT MAX(data_compra) FROM investigacao_compra) - INTERVAL '6 months' <br>
-GROUP BY <br>
+GROUP BY 
     nome_pessoa, pessoa_id <br>
-HAVING <br>
+HAVING 
     COUNT(*) > 1 <br>
-ORDER BY <br>
+ORDER BY 
     total_quantidade_comprada DESC;
 
 <h3>2. Listando os envolvidos.</h3>
@@ -399,4 +399,4 @@ Mas... o resultado foi nulo mais uma vez. A única opção que resta era pensar 
 
 <h2>Conclusão</h2>
 
-Há fortes inídicios de que Pomponio  Gustavo era um informante interno; o empresário Heinz-Walter Juan Campos bate perfeitamente com as descições descritas pelo caminhoneiro Ermes, e também possui uma empresa de comércio do ramo varejista que pode ser usada para lavagem de dinheiro. Gisbert Bento é o dono do carro que foi usado no assalto. Por fim, o último meliante 
+Há fortes inídicios de que Pomponio  Gustavo era um informante interno; o empresário Heinz-Walter Juan Campos bate perfeitamente com as descições descritas pelo caminhoneiro Ermes, e também possui uma empresa de comércio do ramo varejista que pode ser usada para lavagem de dinheiro. Gisbert Bento é o dono do carro que foi usado no assalto. Por fim, o último meliante pode ter sido um dos três urban suspeitos: Vladimir e Giole Montenegro, ou Leonardo Ferenc.
